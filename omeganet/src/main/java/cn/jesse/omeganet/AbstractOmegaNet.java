@@ -1,6 +1,7 @@
-package cn.jesse.omeganet.bootstrap;
+package cn.jesse.omeganet;
 
 
+import cn.jesse.omeganet.channel.ChannelFactory;
 import cn.jesse.omeganet.channel.Channel;
 import cn.jesse.omeganet.channel.ChannelException;
 import cn.jesse.omeganet.channel.ChannelHandler;
@@ -9,7 +10,7 @@ import cn.jesse.omeganet.channel.EventLoopGroup;
 /**
  * Created by jesse on 8/3/16.
  */
-public abstract class AbstractBootstrap<B extends AbstractBootstrap, C extends Channel> {
+public abstract class AbstractOmegaNet<B extends AbstractOmegaNet, C extends Channel> {
     private volatile EventLoopGroup group;
     private volatile ChannelFactory<? extends C> channelFactory;
     private volatile ChannelHandler handler;
@@ -42,6 +43,16 @@ public abstract class AbstractBootstrap<B extends AbstractBootstrap, C extends C
         }
 
         this.channelFactory = channelFactory;
+        return (B) this;
+    }
+
+    public B validate() {
+        if (group == null) {
+            throw new IllegalStateException("group not set");
+        }
+        if (channelFactory == null) {
+            throw new IllegalStateException("channel or channelFactory not set");
+        }
         return (B) this;
     }
 
