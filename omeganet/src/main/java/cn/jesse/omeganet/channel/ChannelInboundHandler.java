@@ -3,7 +3,7 @@ package cn.jesse.omeganet.channel;
 /**
  * Created by jesse on 8/3/16.
  */
-public interface ChannelInboundHandler extends ChannelHanlder {
+public interface ChannelInboundHandler extends ChannelHandler {
     void channelRegistered(ChannelHandlerContext ctx) throws Exception;
 
 

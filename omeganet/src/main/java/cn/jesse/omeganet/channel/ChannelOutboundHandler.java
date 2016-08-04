@@ -5,11 +5,10 @@ import java.net.SocketAddress;
 /**
  * Created by jesse on 8/3/16.
  */
-public interface ChannelOutboundHandler extends ChannelHanlder {
+public interface ChannelOutboundHandler extends ChannelHandler {
     void bind(ChannelHandlerContext ctx, SocketAddress localAddress) throws Exception;
 
-    void connect(
-            ChannelHandlerContext ctx, SocketAddress remoteAddress,
+    void connect(ChannelHandlerContext ctx, SocketAddress remoteAddress,
             SocketAddress localAddress) throws Exception;
 
 
