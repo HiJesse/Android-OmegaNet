@@ -14,21 +14,21 @@ public abstract class ChannelInitializer<T extends Channel> extends ChannelInbou
     @Override
     @SuppressWarnings("unchecked")
     public final void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-//        initChannel((T) ctx.channel());
-//        ctx.pipeline().remove(this);
-//        ctx.pipeline().fireChannelRegistered();
+        initChannel((T) ctx.channel());
+        ctx.pipeline().remove(this);
+        ctx.pipeline().fireChannelRegistered();
     }
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-//        logger.warn("Failed to initialize a channel. Closing: " + ctx.channel(), cause);
-//        try {
-//            ChannelPipeline pipeline = ctx.pipeline();
-//            if (pipeline.context(this) != null) {
-//                pipeline.remove(this);
-//            }
-//        } finally {
-//            ctx.close();
-//        }
+        logger.warn("Failed to initialize a channel. Closing: " + ctx.channel(), cause);
+        try {
+            ChannelPipeline pipeline = ctx.pipeline();
+            if (pipeline.context(this) != null) {
+                pipeline.remove(this);
+            }
+        } finally {
+            ctx.close();
+        }
     }
 }
