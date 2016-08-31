@@ -125,7 +125,7 @@ public class DefaultThreadFactory implements ThreadFactory {
             try {
                 r.run();
             } finally {
-//                FastThreadLocal.removeAll();//TODO fast thread local
+                FastThreadLocal.removeAll();
             }
         }
     }
